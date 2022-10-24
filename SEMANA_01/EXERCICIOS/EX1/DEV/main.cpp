@@ -1,11 +1,29 @@
+// Não me pergunte o porque essas linhas vermelhas aparecerem, só vamo que funciona
+// Feito com ajuda de colegas!
+
 #include <iostream>
 #include <string>
+using namespace std;
 
 // 1 -  Faça uma função que recebe uma certa medida e ajusta ela percentualmente 
 // entre dois valores mínimo e máximo e retorna esse valor
 
+int ConvSens(int value, int minRange, int maxRange){
+   float primeiro = value - minRange;
+   float segundo = minRange * maxRange;
+   int resul = (primeiro/segundo)*100;
+   return resul1
+}
+
 // 2 - Faça uma função que simule a leitura de um sensor lendo o 
 // valor do teclado ao final a função retorna este valor
+
+
+int ReadSens(void){
+   int resul2;
+   cin >> resul2;
+   return resul2;
+}
 
 // 3 - Faça uma função que armazena uma medida inteira qualquer 
 // em um vetor fornecido. Note que como C não possui vetores 
@@ -15,6 +33,12 @@
 // uma área de memória fora do vetor
 
 
+int InsArray(int novoVAL, int ultPlaceholder, int *rando, int maxSize){
+   int *array = rando;
+   array[ultPlaceholder] = novoVAL;
+   resul3 = ultPlaceholder + 1
+   return resul3;
+}
 
 // 4 - Faça uma função que recebe um vetor com 4 posições que contém 
 // o valor da distância de um pequeno robô até cada um dos seus 4 lados.
@@ -22,12 +46,35 @@
 // de maior distância ("Direita", "Esquerda", "Frente", "Tras") e a 
 // segunda é esta maior distância.
 
-
-
+const char* SmallPath(int *array, int *ValorMAX){
+   int placeholder = -1;
+   const char* dir[] = {"Direita", "Esquerda", "Frente", "Tras"};
+   for(int j = 0; j < 4; i++){
+      if(array[i] > *ValorMAX){
+         *ValorMAX = array[i];
+         placeholder = i;
+      }
+   }
+   resul4 = dir[index]
+   return resul4;
+}
 
 // 5 - Faça uma função que pergunta ao usuário se ele deseja continuar o mapeamento e 
 // retorna verdadeiro ou falso
 
+bool LeituraDoCom(){
+   char resp;
+   printf("Você pretende continuar com o mapeamento? S/N");
+   cin >> resp;
+   if(toupper(resp) == 'S'){
+      return true;
+   }
+   elif(toupper(resp) == 'N'){
+      return false;
+   }
+   return printf("Não entendi, vamos tentar de novo...")
+   LeituraDoCom();
+}
 
 // 6 - A função abaixo (que está incompleta) vai "dirigindo" virtualmente um robô 
 // e através de 4 sensores em cada um dos 4 pontos do robo ("Direita", "Esquerda", 
@@ -43,45 +90,39 @@
 // enviado pelo usuário. 
 //
 //      Complete a função com a chamada das funções já criadas
-int dirige(int *v,int maxv){
-	int maxVetor = maxv;
-	int *vetorMov = v;
-	int posAtualVetor = 0;
-	int dirigindo = 1;		
-	while(dirigindo){		
-		int medida = /// .. Chame a função de de leitura da medida para a "Direita"
-		medida = converteSensor(medida,0,830);
-		posAtualVetor = // Chame a função para armazenar a medida no vetor
-        ///////////////////////////////////////////////////////////////////////////		
-		// Repita as chamadas acima para a "Esquerda", "Frente", "Tras"
-		// ................
-		///////////////////////////////////////////////////////////////////////////
-		dirigindo = leComando();		
-	}
-	return posAtualVetor;
+
+int drive(int *v, int maxv){
+   int maxVetor = maxv;
+   int *Vmov = v;
+   int newNOW = 0;
+   int dirigindo = 1;
+   while (dirigindo) = true;
+   {
+      for(int a=0; a < 4; a++){
+         int m = ReadSens();
+         m = ConvSens(m, 0, 830);
+         newNOW = InsertInArray(m, vetNOW, Vmov, maxVetor);
+      }
+      dirigindo = LeituraDoCom();
+   }
+   return newNOW;
 }
 
 
-// O trecho abaixo irá utilizar as funções acima para ler os sensores e o movimento
-// do robô e no final percorrer o vetor e mostrar o movimento a cada direção baseado 
-// na maior distância a cada movimento
-void percorre(int *v,int tamPercorrido){		
-	int *vetorMov = v;
-	int maiorDir = 0;
-	
-	for(int i = 0; i< tamPercorrido; i+=4){
-		char *direcao = direcaoMenorCaminho(&(vetorMov[i]),&maiorDir);
-		printf("Movimentando para %s distancia = %i\n",direcao,maiorDir);
-	}
+void run(int *v,int tamPercorrido){
+   int maiorDir = 0;
+   int *Vmov = v;
+   for(int b = 0; b < tamPercorrido; b+=4){
+      const char *path = SmallPath(&(vetorMov[i]), &maiorDir);
+      printf("Sua coisa está a se movimentanr para %s distancia = %i\n", path, maiorDir);
+   }
 }
 
-int main(int argc, char** argv) {
-	int maxVetor = 100;
-	int vetorMov[maxVetor*4];
-	int posAtualVet = 0;
-	
-	posAtualVet = dirige(vetorMov,maxVetor);
-	percorre(vetorMov,posAtualVet);
-	
-	return 0;
+int main(int argc, char **argv){
+   int Vmax = 100;
+   int newNOW = 0;
+   int Vmov[Vmax*4] = {0};
+   newNOW = drive(Vmov, Vmax);
+   run(Vmov,vetNOW);
+   return 0;
 }
